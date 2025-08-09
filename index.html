@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indian Stock Trading Platform</title>
+    <link rel="stylesheet" href="/G_Boy'/style.css">
+    <link href="https://cdnjs.cloudfl are.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Login Form -->
+    <div id="loginContainer" class="login-container">
+        <div class="login-form">
+            <div class="login-header">
+                <i class="fas fa-chart-line"></i>
+                <h2>Welcome to BharatTrade Pro</h2>
+                <p id="loginSubtext">Sign in to your account</p>
+            </div>
+            
+            <form id="loginForm">
+                <div id="nameField" class="form-group hidden">
+                    <label for="name">Full Name</label>
+                    <div class="input-group">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="name" name="name" placeholder="John Doe">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <div class="input-group">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="input-group">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="password" name="password" placeholder="••••••••" required>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn-primary" id="loginBtn">Sign in</button>
+                
+                <div class="toggle-form">
+                    <button type="button" id="toggleAuth">Don't have an account? Sign up</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main Application -->
+    <div id="appContainer" class="app-container hidden">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="header-left">
+                    <div class="logo">
+                        <i class="fas fa-chart-line"></i>
+                        <span>BharatTrade Pro</span>
+                    </div>
+                    
+                    <nav class="nav">
+                        <button class="nav-item active" data-view="dashboard">
+                            <i class="fas fa-chart-bar"></i>
+                            Dashboard
+                        </button>
+                        <button class="nav-item" data-view="portfolio">
+                            <i class="fas fa-briefcase"></i>
+                            Portfolio
+                        </button>
+                        <button class="nav-item" data-view="trading">
+                            <i class="fas fa-chart-line"></i>
+                            Trading
+                        </button>
+                        <button class="nav-item" data-view="history">
+                            <i class="fas fa-clock"></i>
+                            History
+                        </button>
+                        <button class="nav-item" data-view="watchlist">
+                            <i class="fas fa-star"></i>
+                            Watchlist
+                        </button>
+                        <button class="nav-item" data-view="profile">
+                            <i class="fas fa-cog"></i>
+                            Profile
+                        </button>
+                    </nav>
+                </div>
+                
+                <div class="header-right">
+                    <div class="user-info">
+                        <div class="user-details">
+                            <div class="user-name" id="userName">Rajesh Kumar</div>
+                            <div class="user-balance">Balance: ₹<span id="userBalance">500,000</span></div>
+                        </div>
+                        <i class="fas fa-user user-icon"></i>
+                        <button class="logout-btn" id="logoutBtn">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard View -->
+            <div id="dashboardView" class="view active">
+                <div class="page-header">
+                    <h1>Dashboard</h1>
+                    <p>Welcome back, <span id="welcomeName">Rajesh Kumar</span>. Here's your portfolio overview.</p>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-content">
+                            <div class="stat-info">
+                                <p class="stat-label">Portfolio Value</p>
+                                <p class="stat-value">₹<span id="portfolioValue">12,50,000</span></p>
+                            </div>
+                            <div class="stat-icon blue">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-content">
+                            <div class="stat-info">
+                                <p class="stat-label">Available Balance</p>
+                                <p class="stat-value">₹<span id="availableBalance">5,00,000</span></p>
+                            </div>
+                            <div class="stat-icon green">
+                                <i class="fas fa-dollar-sign"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-content">
+                            <div class="stat-info">
+                                <p class="stat-label">Total Gain/Loss</p>
+                                <p class="stat-value gain">₹<span id="totalGainLoss">1,25,000</span></p>
+                            </div>
+                            <div class="stat-icon gain">
+                                <i class="fas fa-trending-up"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-content">
+                            <div class="stat-info">
+                                <p class="stat-label">Performance</p>
+                                <p class="stat-value gain"><span id="performance">11.11</span>%</p>
+                            </div>
+                            <div class="stat-icon purple">
+                                <i class="fas fa-users"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dashboard-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2><i class="fas fa-globe"></i> Market Overview</h2>
+                        </div>
+                        <div class="card-content">
+                            <div id="marketOverview" class="market-list"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>Market News</h2>
+                        </div>
+                        <div class="card-content">
+                            <div id="marketNews" class="news-list"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Portfolio View -->
+            <div id="portfolioView" class="view">
+                <div class="page-header">
+                    <h1>Portfolio</h1>
+                    <p>Track your investments and performance.</p>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-content">
+                            <div class="stat-info">
+                                <p class="stat-label">Total Value</p>
+                                <p class="stat-value">₹<span id="portfolioTotalValue">8,32,445</span></p>
+                            </div>
+                            <div class="stat-icon blue">
+                                <i class="fas fa-chart-pie"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-content">
+                            <div class="stat-info">
+                                <p class="stat-label">Total Gain/Loss</p>
+                                <p class="stat-value gain">₹<span id="portfolioGainLoss">16,445</span></p>
+                            </div>
+                            <div class="stat-icon gain">
+                                <i class="fas fa-trending-up"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-content">
+                            <div class="stat-info">
+                                <p class="stat-label">Performance</p>
+                                <p class="stat-value gain"><span id="portfolioPerformance">2.01</span>%</p>
+                            </div>
+                            <div class="stat-icon purple">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Holdings</h2>
+                    </div>
+                    <div class="card-content">
+                        <div class="table-container">
+                            <table id="portfolioTable">
+                                <thead>
+                                    <tr>
+                                        <th>Symbol</th>
+                                        <th>Shares</th>
+                                        <th>Avg Price</th>
+                                        <th>Current Price</th>
+                                        <th>Total Value</th>
+                                        <th>Gain/Loss</th>
+                                        <th>%</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="portfolioTableBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trading View -->
+            <div id="tradingView" class="view">
+                <div class="page-header">
+                    <h1>Trading</h1>
+                    <p>Buy and sell stocks with real-time quotes.</p>
+                </div>
+                
+                <div class="trading-grid">
+                    <div class="trading-left">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="search-container">
+                                    <i class="fas fa-search"></i>
+                                    <input type="text" id="stockSearch" placeholder="Search stocks...">
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="table-container">
+                                    <table id="stocksTable">
+                                        <thead>
+                                            <tr>
+                                                <th>Symbol</th>
+                                                <th>Price</th>
+                                                <th>Change</th>
+                                                <th>Volume</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="stocksTableBody"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="trading-right">
+                        <div class="card trading-panel">
+                            <div class="card-header">
+                                <h2><i class="fas fa-shopping-cart"></i> Place Order</h2>
+                            </div>
+                            <div class="card-content">
+                                <div id="tradingPanelContent">
+                                    <div class="empty-state">
+                                        <i class="fas fa-dollar-sign"></i>
+                                        <p>Select a stock to place an order</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- History View -->
+            <div id="historyView" class="view">
+                <div class="page-header">
+                    <h1>Transaction History</h1>
+                    <p>View all your trading activity and transaction details.</p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-content">
+                        <div class="filters-grid">
+                            <div class="form-group">
+                                <label>Search</label>
+                                <div class="search-container">
+                                    <i class="fas fa-search"></i>
+                                    <input type="text" id="historySearch" placeholder="Search by symbol or name...">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Transaction Type</label>
+                                <select id="typeFilter">
+                                    <option value="all">All Types</option>
+                                    <option value="buy">Buy</option>
+                                    <option value="sell">Sell</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Status</label>
+                                <select id="statusFilter">
+                                    <option value="all">All Status</option>
+                                    <option value="completed">Completed</option>
+                                    <option value="pending">Pending</option>
+                                    <option value="cancelled">Cancelled</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h2><i class="fas fa-clock"></i> Recent Transactions</h2>
+                    </div>
+                    <div class="card-content">
+                        <div class="table-container">
+                            <table id="historyTable">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Symbol</th>
+                                        <th>Type</th>
+                                        <th>Shares</th>
+                                        <th>Price</th>
+                                        <th>Total</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="historyTableBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Watchlist View -->
+            <div id="watchlistView" class="view">
+                <div class="page-header">
+                    <h1>Watchlist</h1>
+                    <p>Keep track of your favorite stocks and monitor their performance.</p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h2><i class="fas fa-star"></i> Your Watchlist</h2>
+                    </div>
+                    <div class="card-content">
+                        <div class="table-container">
+                            <table id="watchlistTable">
+                                <thead>
+                                    <tr>
+                                        <th>Symbol</th>
+                                        <th>Price</th>
+                                        <th>Change</th>
+                                        <th>Volume</th>
+                                        <th>Market Cap</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="watchlistTableBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h2><i class="fas fa-plus"></i> Add to Watchlist</h2>
+                        <div class="search-container">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="watchlistSearch" placeholder="Search stocks to add...">
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="table-container">
+                            <table id="availableStocksTable">
+                                <thead>
+                                    <tr>
+                                        <th>Symbol</th>
+                                        <th>Price</th>
+                                        <th>Change</th>
+                                        <th>Volume</th>
+                                        <th>Market Cap</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="availableStocksTableBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile View -->
+            <div id="profileView" class="view">
+                <div class="page-header">
+                    <h1>Profile</h1>
+                    <p>Manage your account settings and preferences.</p>
+                </div>
+                
+                <div class="profile-grid">
+                    <div class="profile-sidebar">
+                        <div class="card">
+                            <div class="card-content profile-overview">
+                                <div class="profile-avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <h2 id="profileName">Rajesh Kumar</h2>
+                                <p id="profileEmail">rajesh@example.com</p>
+                                <div class="profile-stats">
+                                    <div class="profile-stat">
+                                        <p>Account Balance</p>
+                                        <p class="stat-value green">₹<span id="profileBalance">5,00,000</span></p>
+                                    </div>
+                                    <div class="profile-stat">
+                                        <p>Portfolio Value</p>
+                                        <p class="stat-value blue">₹<span id="profilePortfolioValue">12,50,000</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Quick Actions</h3>
+                            </div>
+                            <div class="card-content">
+                                <div class="quick-actions">
+                                    <button class="quick-action-btn">Download Tax Documents</button>
+                                    <button class="quick-action-btn">Account Statements</button>
+                                    <button class="quick-action-btn">Security Settings</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-main">
+                        <div class="card">
+                            <div class="card-header">
+                                <h2><i class="fas fa-cog"></i> Account Information</h2>
+                                <button id="editProfileBtn" class="btn-primary">Edit</button>
+                            </div>
+                            <div class="card-content">
+                                <form id="profileForm">
+                                    <div class="form-grid">
+                                        <div class="form-group">
+                                            <label><i class="fas fa-user"></i> Full Name</label>
+                                            <input type="text" id="profileNameInput" disabled>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label><i class="fas fa-envelope"></i> Email Address</label>
+                                            <input type="email" id="profileEmailInput" disabled>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label><i class="fas fa-phone"></i> Phone Number</label>
+                                            <input type="tel" id="profilePhone" value="+91 98765 43210" disabled>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label><i class="fas fa-map-marker-alt"></i> Address</label>
+                                            <input type="text" id="profileAddress" value="123 MG Road, Mumbai, Maharashtra 400001" disabled>
+                                        </div>
+                                    </div>
+                                    
+                                    <div id="profileFormActions" class="form-actions hidden">
+                                        <button type="submit" class="btn-success">Save Changes</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-header">
+                                <h2><i class="fas fa-bell"></i> Notification Preferences</h2>
+                            </div>
+                            <div class="card-content">
+                                <div class="notification-settings">
+                                    <div class="setting-item">
+                                        <div class="setting-info">
+                                            <label>Email Notifications</label>
+                                            <p>Receive trade confirmations and market updates</p>
+                                        </div>
+                                        <input type="checkbox" id="emailNotifications" checked>
+                                    </div>
+                                    
+                                    <div class="setting-item">
+                                        <div class="setting-info">
+                                            <label>Push Notifications</label>
+                                            <p>Get instant alerts on your mobile device</p>
+                                        </div>
+                                        <input type="checkbox" id="pushNotifications" checked>
+                                    </div>
+                                    
+                                    <div class="setting-item">
+                                        <div class="setting-info">
+                                            <label>SMS Notifications</label>
+                                            <p>Receive text messages for important updates</p>
+                                        </div>
+                                        <input type="checkbox" id="smsNotifications">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-header">
+                                <h2><i class="fas fa-shield-alt"></i> Security Settings</h2>
+                            </div>
+                            <div class="card-content">
+                                <div class="security-settings">
+                                    <div class="setting-item">
+                                        <div class="setting-info">
+                                            <label>Two-Factor Authentication</label>
+                                            <p>Add an extra layer of security to your account</p>
+                                        </div>
+                                        <input type="checkbox" id="twoFactorAuth" checked>
+                                    </div>
+                                    
+                                    <div class="setting-item">
+                                        <div class="setting-info">
+                                            <label>Biometric Login</label>
+                                            <p>Use fingerprint or face recognition to log in</p>
+                                        </div>
+                                        <input type="checkbox" id="biometricLogin">
+                                    </div>
+                                    
+                                    <div class="security-actions">
+                                        <button class="btn-link">Change Password</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
